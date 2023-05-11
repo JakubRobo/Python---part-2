@@ -11,8 +11,11 @@ czytelnik1 = Czytelnik("Jan", "Kowalski", 12345)
 czytelnik2 = Czytelnik("Anna", "Nowak", 67890)
 czytelnik3 = Czytelnik("Mariusz", "Pudzianowski", 42069)
 czytelnik4 = Czytelnik("Robert", "Nowak", 21370)
+czytelnik5 = Czytelnik("Jakub", "Robaszewski", 70707)
 
 czytelnik1.info()
 czytelnik2.info()
 czytelnik3.info()
 czytelnik4.info()
+czytelnik5.info()
+
