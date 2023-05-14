@@ -7,6 +7,6 @@ if czyA2:
 if wiek >= 24 or (czyA2 and wiek >= 20 and odIluA2 >= 2):
     print("Możesz zrobić")
 else:
-    print("Nie możesz zrobić")
+    print("Nie możesz zrobić.")
 
 
