@@ -1,19 +1,20 @@
-import random
+from random import randint
+while True:
+    liczba = randint(0, 100)
+    proba = 0
 
-liczba = random.randint(0,100)
-odp = print(input("Podaj liczbę!: "))
-odp = int(odp)
-proba = 0
-if liczba == odp:
-    print("Gratulacje! Trafiłeś liczbę!")
-    print("Liczba prób: "+ proba)
-    pass
-if liczba > odp:
-    print("Liczba za duża! Próbuj dalej!")
-    proba += 1
-    print("Próba: " + proba)
-    pass
-else:
-    print("Liczba za mała! Próbuj dalej!")
-    proba += 1
-    print("Próba: " + proba)
+    while True:
+        odp = int(input("Podaj liczbę!: "))
+        proba += 1
+        if odp == liczba:
+            print(f"Gratulacje! Odgadłeś liczbę {liczba} w {proba} strzałach.")
+            break
+        elif odp < liczba:
+            print("Liczba jest większa.")
+        else:
+            print("Liczba jest mniejsza.")
+
+    dalej = input("Chcesz grać dalej? (tak/nie): ")
+    if dalej.lower() != "tak":
+        break
+
