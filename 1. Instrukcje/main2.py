@@ -1,4 +1,4 @@
-for i in range(1,101,1):
+for i in range(0,101,3):
     if i%3 == 0:
         print(i)
         pass
