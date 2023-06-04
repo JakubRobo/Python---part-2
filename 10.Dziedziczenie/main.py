@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-
+import math
 class Ksztalt(ABC):
     def __init__(self):
         pass
@@ -15,29 +15,29 @@ class Ksztalt(ABC):
 class Prostokat(Ksztalt):
     def __init__(self, dlugosc, szerokosc):
         super().__init__()
-        self.dlugosc = dlugosc
-        self.szerokosc = szerokosc
+        self._dlugosc = dlugosc
+        self._szerokosc = szerokosc
     
     def pole(self):
-        return self.dlugosc * self.szerokosc
+        return self._dlugosc * self._szerokosc
     
     def obwod(self):
-        return 2 * (self.dlugosc + self.szerokosc)
+        return 2 * (self._dlugosc + self._szerokosc)
 
 class Kolo(Ksztalt):
     def __init__(self, promien):
         super().__init__()
-        self.promien = promien
+        self._promien = promien
     
     def pole(self):
-        return 3.14 * self.promien**2
+        return math.pi * self._promien**2
     
     def obwod(self):
-        return 2 * 3.14 * self.promien
+        return 2 * math.pi * self._promien
 
 # Tworzenie obiektów i wywoływanie metod
-prostokat = Prostokat(4, 6)
-kolo = Kolo(5)
+prostokat = Prostokat(8, 3)
+kolo = Kolo(3)
 
 print("Prostokąt:")
 print("Pole:", prostokat.pole())
