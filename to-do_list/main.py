@@ -2,6 +2,7 @@ import json
 
 zadania = {}
 temp_id = 0
+
 def add():
     global temp_id
     tytul = input("Podaj tytuł: ")
@@ -9,9 +10,10 @@ def add():
     termin = input("Podaj termin: ")
     id = temp_id + 1
     while id in zadania:
-        id = id+1
-    zadania[temp_id] = {"Tytul": tytul, "Opis": opis, "Termin": termin}
+        id = id + 1
     temp_id = id
+    zadania[temp_id] = {"Tytul": tytul, "Opis": opis, "Termin": termin}
+
 def check():
     if zadania:
         for id, b in zadania.items():
