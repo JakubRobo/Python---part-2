@@ -1,14 +1,17 @@
 import json
 
 zadania = {}
-
+temp_id = 0
 def add():
-    id = len(zadania) + 1
+    global temp_id
     tytul = input("Podaj tytuł: ")
     opis = input("Podaj opis: ")
     termin = input("Podaj termin: ")
-    zadania[id] = {"Tytul": tytul, "Opis": opis, "Termin": termin}
-
+    id = temp_id + 1
+    while id in zadania:
+        id = id+1
+    zadania[temp_id] = {"Tytul": tytul, "Opis": opis, "Termin": termin}
+    temp_id = id
 def check():
     if zadania:
         for id, b in zadania.items():
@@ -22,23 +25,23 @@ def check():
 
 def check_desc():
     try:
-        id = int(input("Podaj id: "))
-        b = zadania.get(id)
-        if b:
+        try:
+            id = int(input("Podaj id: "))
+            b = zadania[id]
             print("Opis zadania:", b["Opis"])
-        else:
+        except ValueError:
             print("Nieprawidłowe id")
-    except ValueError:
+    except KeyError:
         print("Nieprawidłowe id")
 
 def delete():
     try:
-        id = int(input("Podaj id: "))
-        if id in zadania:
+        try:
+            id = int(input("Podaj id: "))
             del zadania[id]
-        else:
+        except ValueError:
             print("Nieprawidłowe id")
-    except ValueError:
+    except KeyError:
         print("Nieprawidłowe id")
 
 def edit():
@@ -59,7 +62,10 @@ try:
         tasks = json.load(infile)
         if tasks:
             zadania = {int(id): b for id, b in tasks.items()}
-            check()
+            for id, b in zadania.items():
+                print("id: ", id)
+                print("tytuł: ", b["Tytul"])
+                print("termin: ", b["Termin"])
         else:
             print("Brak zadań")
 except FileNotFoundError:
@@ -72,27 +78,24 @@ while True:
     print("3. Sprawdź opis zadania")
     print("4. Usuń zadanie")
     print("5. Edytuj zadanie")
-    print("6. Zakończ")
+    print("6. Zapisz do pliku JSON")
+    print("7. Zakończ")
     print("*-*-*-*-*")
-
-    try:
-        a = int(input("Wybierz polecenie: "))
-        if a == 1:
-            add()
-        elif a == 2:
-            check()
-        elif a == 3:
-            check_desc()
-        elif a == 4:
-            delete()
-        elif a == 5:
-            edit()
-        elif a == 6:
-            with open("plik.json", "w") as outfile:
-                json.dump(zadania, outfile)
-            print("Zakończono program, utworzono plik JSON!")
-            break
-        else:
-            print("Nieprawidłowe polecenie")
-    except ValueError:
-        print("Nieprawidłowe polecenie")
+    a = int(input("Wybierz polecenie: "))
+    if a == 1:
+        add()
+    elif a == 2:
+        check()
+    elif a == 3:
+        check_desc()
+    elif a == 4:
+        delete()
+    elif a == 5:
+        edit()
+    elif a == 6:
+        with open("plik.json", "w") as outfile:
+            json.dump(zadania, outfile)
+        print("Utworzono plik JSON!")
+    elif a == 7:
+        print("Koniec programu.")
+        break
